@@ -144,11 +144,11 @@ BEGIN
                         'Content-Type: text/html; charset="UTF-8"' || utl_tcp.crlf || utl_tcp.crlf);
 
     /*Anexar o corpo da mensagem*/
-    utl_smtp.write_data(vconexao, [b]asc2html(BODY )[/b]);
+    utl_smtp.write_data(vconexao, asc2html(BODY ));
     utl_smtp.write_data(vconexao, utl_tcp.crlf || utl_tcp.crlf);
 --    utl_smtp.write_data(vconexao, '--' || l_boundary || '--' || utl_tcp.crlf);
 
-   [b][i] /*Anexar arquivo na mensagem */[/i][/b]
+    /*Anexar arquivo na mensagem */
     IF p_attach_name IS NOT NULL
        AND p_attach_blob IS NOT NULL THEN
         utl_smtp.write_data(vconexao, '--' || l_boundary || utl_tcp.crlf);
